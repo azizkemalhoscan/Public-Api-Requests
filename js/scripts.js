@@ -40,7 +40,7 @@ function generateCards(data){
   const addhere = document.querySelector('#gallery');
   for(let i = 0; i < 12; i++){
     const html = `
-    <div class="card">
+    <div class="card" id='${i}'>
                       <div class="card-img-container">
                           <img class="card-img" src=${data.results[i].picture.thumbnail} alt="profile picture">
                       </div>
@@ -57,12 +57,16 @@ function generateCards(data){
 // -----------------------------------------------------------------
 function generateModal(data){
   const  bodyElement = document.getElementsByTagName("BODY");
-  const relativPosition = document.getElementsByTagName('HEADER');
+  const newDiv = document.createElement('DIV');
+  newDiv.classList = "to-be-removed";
+
+  // const relativPosition = document.getElementsByTagName('HEADER');
   const selectCard = document.querySelector('#gallery');
   selectCard.addEventListener('click', (e) => {
     console.log('I am generateModal function');
-    console.log(bodyElement[0]);
-    console.log(e.target);
+    // console.log(bodyElement);
+    // --------------------HEREEEEEEEEEEEEE------------------
+    console.log(e.target.id);
   const html = `
   <div class="modal-container">
                 <div class="modal">
@@ -80,9 +84,19 @@ function generateModal(data){
                 </div>
   </div>
   `
-bodyElement[0].appendChild(html);
+  newDiv.innerHTML = html;
+  bodyElement[0].appendChild(newDiv);
+  const closeModal = document.querySelector('button');
+  // console.log(closeModal);
+  closeModal.addEventListener('click', () => {
+    // const  bodyElement = document.getElementsByTagName("BODY");
+    const removeDivElement = document.querySelector('.to-be-removed');
+    bodyElement[0].removeChild(removeDivElement);
+
+  })
   })
 }
+
 // ------------------------------------------------------------------
 // Select elements here
 
@@ -90,45 +104,7 @@ bodyElement[0].appendChild(html);
 // var galleryDiv = $('#gallery');
 // var header = $('.header-text-container');
 
-// -------------------------------------
-// This part is unnecessary  think before going into long tasks
-// -------------------------------------
-// const galleryContainer = document.createElement('DIV');
-// galleryContainer.classList = 'card';
-// const cardImageContainer = document.createElement('DIV');
-// cardImageContainer.classList = 'card-img-container';
-// const img = document.createElement('IMG');
-// img.classList = 'card-img';
-// img.src = "https://placehold.it/90x90";
-// img.alt = "profile picture";
-
-// const cardInfoContainer = document.createElement('DIV');
-// cardInfoContainer.classList = "card-info-container";
-// const h3 = document.createElement('H3');
-// h3.id = "name";
-// h3.classList = "card-name cap";
-// h3.textContent = 'first last';
-
-// const firstP = document.createElement('P');
-// firstP.classList = 'card-text';
-// firstP.textContent = 'email';
-
-// const secondP = document.createElement('P');
-// secondP.classList = 'card-text cap';
-// secondP.textContent = "city, state";
-
-// cardImageContainer.appendChild(img);
-
-// cardInfoContainer.appendChild(h3);
-// cardInfoContainer.appendChild(firstP);
-// cardInfoContainer.appendChild(secondP);
-// // console.log(cardInfoContainer);
-
-// galleryContainer.appendChild(cardImageContainer);
-// galleryContainer.appendChild(cardInfoContainer);
-
-// console.log(galleryContainer);
-
+// ------------------------------------------------------------------
 
 function checkStatus(response){
   // You do not need to equalize this to true since it is a value either true or false/
