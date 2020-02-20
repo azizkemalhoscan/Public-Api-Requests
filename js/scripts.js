@@ -1,5 +1,5 @@
 
-
+// const lastElementOfBody = parentElement.querySelector('script');
 // ----------------------------------------------------------------
 // Here I fetched a different url Url gets 12 random results
 fetch('https://randomuser.me/api/?results=12')
@@ -8,19 +8,10 @@ fetch('https://randomuser.me/api/?results=12')
   .then(data => {
     console.log(data.results);
     generateCards(data);
+    generateModal(data);
 
   })
-// ----------------------------------------------------------------
-/*
- Card Elements wherabouts!
-  These below properties may need an index;
-  -card image == data.results.picture.thumbnail;
-  -first and last name == data.results.name.first & last;
-  -email == data.results.email;
-*/
 
-
-  // .catch(error => console.log("Looks like there is an error", error))
 // ----------------------------------------------------------------
 // Here I selected the search container division and created dom elements by following
 // search markup specified as comment in hmtl file.
@@ -63,9 +54,15 @@ function generateCards(data){
     addhere.innerHTML += html;
   }
 }
-
+// -----------------------------------------------------------------
 function generateModal(data){
-
+  const  bodyElement = document.getElementsByTagName("BODY");
+  const relativPosition = document.getElementsByTagName('HEADER');
+  const selectCard = document.querySelector('#gallery');
+  selectCard.addEventListener('click', (e) => {
+    console.log('I am generateModal function');
+    console.log(bodyElement[0]);
+    console.log(e.target);
   const html = `
   <div class="modal-container">
                 <div class="modal">
@@ -83,8 +80,10 @@ function generateModal(data){
                 </div>
   </div>
   `
+bodyElement[0].appendChild(html);
+  })
 }
-
+// ------------------------------------------------------------------
 // Select elements here
 
 // var searchContainerElement = $('.search-container');
