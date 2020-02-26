@@ -43,13 +43,13 @@ function generateCards(data){
   for(let i = 0; i < 12; i++){
     const html = `
     <div class="card" id='${i}'>
-                      <div class="card-img-container">
-                          <img class="card-img" src=${data.results[i].picture.thumbnail} alt="profile picture">
+                      <div class="card-img-container" id='${i}'>
+                          <img class="card-img" id='${i}' src=${data.results[i].picture.thumbnail} alt="profile picture">
                       </div>
-                      <div class="card-info-container">
-                          <h3 id="name" class="card-name cap">${data.results[i].name.first} ${data.results[i].name.last}</h3>
-                          <p class="card-text">${data.results[i].email}</p>
-                          <p class="card-text cap">${data.results[i].location.city}, ${data.results[i].location.state}</p>
+                      <div class="card-info-container" id='${i}'>
+                          <h3 id="${i}" class="card-name cap">${data.results[i].name.first} ${data.results[i].name.last}</h3>
+                          <p class="card-text" id='${i}'>${data.results[i].email}</p>
+                          <p class="card-text cap" id='${i}'>${data.results[i].location.city}, ${data.results[i].location.state}</p>
                       </div>
                   </div>
     `
